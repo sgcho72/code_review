@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "priority_queue.h"
+#include "custom_enum.h"
 
 using namespace std;
 
@@ -20,27 +21,23 @@ int main(int argc, char* argv[]){
 	templatePriorityQueue<int> priQueue;
 	int customNumber = 0;
 
-	//empty check
-	if(priQueue.empty()){
-		cout << "[!] Priority Queue is empty - initalized" << endl;
-	}
 
 	// push
-	pushQueue(&priQueue,23);
-	pushQueue(&priQueue,598);
-	pushQueue(&priQueue,302);
+	pushQueue(&priQueue,BAD_CUSTOMER );
+	pushQueue(&priQueue,SUPER_CUSTOMER);
+	pushQueue(&priQueue,GOOD_CUSTOMER );
 
 	if( argc > 1 ){
 		customNumber = atoi(argv[1]);
-		if( customNumber > -500 && customNumber < 2000 ){
+		if( customNumber > MIN_VAL_CUSTOMER && customNumber < MAX_VAL_CUSTOMER ){
 			pushQueue(&priQueue,customNumber);
 		}
 		else{
-			pushQueue(&priQueue,-1);
+			pushQueue(&priQueue, UNKNOWN_CUSTOMER);
 		}
 	}
 	else{
-		pushQueue(&priQueue,-1);
+		pushQueue(&priQueue,UNKNOWN_CUSTOMER);
 	}
 
 	//empty & size
